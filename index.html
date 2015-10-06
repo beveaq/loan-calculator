@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Loan Calculator</title>
+
+    <!-- Bootstrap -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lc.css" rel="stylesheet">
+    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+
+    <div class="page-header">
+      <h1><a href="/">Loan Calculator</a></h1>
+    </div>
+    
+    <div id="loan-calc">
+      <form id="loan-calc" class="form-horizontal">
+        
+	    <div class="form-group">
+	      <label for="label" class="col-sm-3 control-label" >Label</label>
+	      <div class="col-sm-5">
+	        <input type="text" class="form-control" id="label">
+	      </div>
+	    </div>
+        
+	    <div class="form-group">
+	      <label for="loan-amount" class="col-sm-3 control-label" >Loan Amount</label>
+	      <div class="col-sm-3">
+	        <div class="input-group">
+	          <input type="text" name="loan-amount" class="form-control" id="loan-amount">
+              <div id="loan-amount-invalid" class="alert alert-danger" role="alert">That amount's not valid!</div>
+              <div id="low-loan-amount" class="alert alert-success" role="alert">
+                Why not consider trying to make some money online instead? Check out <a href="https://www.reddit.com/r/beermoney">www.reddit.com/r/beermoney</a>.
+              </div>
+	        </div>
+	      </div>
+	    </div>
+        
+        <div class="form-group">
+	      <label for="interest-rate" class="col-sm-3 control-label" >Interest rate (APR)</label>
+	      <div class="col-sm-2">
+	        <div class="input-group">
+	          <input type="text" name="label" class="form-control" id="interest-rate">
+	          <span class="input-group-addon">%</span>
+	        </div>
+            <div id="interest-invalid" class="alert alert-danger" role="alert">That number's not valid!</div>
+	      </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="col-xs-9 col-sm-offset-1">
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-primary radio-button active" id="select-monthly-payments" disabled>
+                <input type="radio" name="payment-type" id="select-monthly-payments" autocomplete="off" checked="true"> Fixed payment per month
+              </label>
+              <label class="btn btn-primary radio-button" id="select-payment-period">
+                <input type="radio" name="payment-type" id="select-payment-period" autocomplete="off"> Fixed payment period
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group" id="monthly-payment">
+          <div class="col-sm-2 col-sm-offset-3">
+            <div class="">
+	          <input class="form-control" type="text" name="each-payment" id="each-payment" autocomplete="off">
+            </div>
+            <div id="each-payment-invalid" class="alert alert-danger" role="alert">That amount's not valid!</div>
+            <div id="each-payment-too-high" class="alert alert-danger" role="alert">That's higher than the loan!</div>
+            <div id="each-payment-too-low" class="alert alert-danger" role="alert">That's lower than the monthly interest!</div>
+          </div>
+        </div>
+        
+        <div class="form-group" id="payment-period">
+	      <div class="col-sm-2 col-sm-offset-3">
+	        <div class="input-group">
+	          <input class="form-control" type="text" name="months" id="months" >
+	          <span class="input-group-addon">Months</span>
+	        </div>
+          <div id="payment-period-invalid" class="alert alert-danger" role="alert">That's not a valid time period!</div>
+	      </div>
+          
+	      <div class="col-sm-2">
+	        <div class="input-group">
+	          <input class="form-control" type="text" name="years" id="years" >
+	          <span class="input-group-addon">Years</span>
+	        </div>
+	      </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="col-xs-9 col-sm-12 col-sm-offset-2">
+	          <button type="add" class="btn btn-success" id="add-loan" autocomplete="off">Add</button>
+              <button type="button" class="btn btn-danger" id="clear" autocomplete="off">Clear</button>
+              <button type="button" class="btn btn-danger" id="reload" autocomplete="off">Start over</button>
+              <button type="button" class="btn btn-primary" id="loancalc-download-csv" name="csv-button" disabled autocomplete="off">Download as CSV</button>
+              <button type="button" class="btn btn-primary" id="text-file" disabled autocomplete="off">Download as text</button>
+          </div>
+        </div>
+        
+      </form>
+    </div>
+    
+    <div id="loan-table">
+      <table id="loans" class="table table-hover table-condensed">
+        <thead>
+          <tr>
+            <th class="sort-alpha">Label<span class="sort-icon">&#9650;</span></th>
+            <th class="sort-numeric">Loan amount<span class="sort-icon">&#9650;</span></th>
+            <th class="sort-numeric">Interest rate (%)<span class="sort-icon">&#9650;</span></th>
+            <th class="sort-numeric">Payment period (months)<span class="sort-icon">&#9650;</span></th>
+            <th class="sort-numeric">Payment per month<span class="sort-icon">&#9650;</span></th>
+            <th class="sort-numeric">Total payment<span class="sort-icon">&#9650;</span></th>
+            <th class="sort-numeric">Total interest paid<span class="sort-icon">&#9650;</span></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    
+    <div id="quotes"></div>
+
+    <div id="footer">
+      <a href="https://twitter.com/beveaqo"><img src="Twitter_logo_blue_32.png" /></a>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+    <script src="lc.js"></script>
+    
+  </body>
+</html>
