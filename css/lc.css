@@ -1,8 +1,7 @@
 div.page-header{
     margin: 0px 0px 20px 0px;
     padding: 10px 0px 10px 30px;
-    /*background: #673ab7; */ /* purple */
-    background: #ffb32f; /* gold */
+    background: #ffb32f;
 }
 
 div#quotes blockquote{
@@ -24,8 +23,7 @@ div.page-header a{
 }
 
 div#quotes{
-    /*background: #d1c4e9;*/ /* purple */
-    background: #f5ecce; /* gold */
+    background: #f5ecce;
     color: #555;
     margin-top: 100px;
     padding: 10px 0px 10px 20px;

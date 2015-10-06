@@ -9,7 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="lc.css" rel="stylesheet">
+    <link href="css/lc.css" rel="stylesheet">
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -102,7 +102,7 @@
         
         <div class="form-group">
           <div class="col-xs-9 col-sm-12 col-sm-offset-2">
-            <button type="button" class="btn btn-success" id="add-loan" autocomplete="off">Add</button>
+            <button type="button" class="btn btn-success" id="add-loan" autocomplete="off">Add</button> <!-- autocomplete="off" due to firefox issue -->
             <button type="button" class="btn btn-danger" id="clear" autocomplete="off">Clear</button>
             <button type="button" class="btn btn-danger" id="reload" autocomplete="off">Start over</button>
             <button type="button" class="btn btn-primary" id="loancalc-download-csv" name="csv-button" disabled autocomplete="off">Download as CSV</button>
@@ -142,7 +142,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     
-    <script src="lc.js"></script>
+    <script src="js/lc.js"></script>
 
     <!-- Start of StatCounter Code for Default Guide -->
     <script type="text/javascript">
