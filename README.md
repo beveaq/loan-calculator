@@ -1,2 +1,1 @@
-# loan-calculator
-A Loan Calculator Website
+[Loan Calculator](http://beveaq.github.io/loan-calculator)
